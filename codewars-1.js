@@ -40,3 +40,28 @@ function lovefunc(flower1, flower2){
 
 
 // Needle in the haystack https://www.codewars.com/kata/56676e8fabd2d1ff3000000c/train/javascript
+
+function findNeedle(haystack) {
+  for(var i = 0; i < haystack.length; i++){
+    if(haystack[i] === "needle"){
+      var needleIndex = i;
+    }
+  }
+  return "found the needle at position " + needleIndex;
+}
+
+// Remember to put the things that you need returned outside of the loop function or
+// it will only return the first time it finds the needle and exit the loop
+// alternate solution:
+
+function findNeedle(haystack) {
+  return "found the needle at position " + haystack.indexOf("needle");
+}
+
+// Keep Hydrated! https://www.codewars.com/kata/582cb0224e56e068d800003c/train/javascript
+
+function litres(time) {
+  var amountDrunk = time * 0.5;
+  var roundedAmountDrunk = Math.floor(amountDrunk)
+  return roundedAmountDrunk;
+}
