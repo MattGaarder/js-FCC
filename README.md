@@ -31,7 +31,35 @@ name includes spaces or punctuation characters, or when it is a number (for arra
 you must use the square bracket notation.
 
 
+The in operator expects a left-side operand that is a string, symbol, or value that can
+be converted to a string. It expects a right-side operand that is an object. It evaluates
+to true if the left-side value is the name of a property of the right-side object. For
+example:
 
+let point = {x: 1, y: 1}; // Define an object
+"x" in point // => true: object has property named "x"
+"z" in point // => false: object has no "z" property.
+"toString" in point // => true: object inherits toString method
+let data = [7,8,9]; // An array with elements (indices) 0, 1, and 2
+"0" in data // => true: array has an element "0"
+1 in data // => true: numbers are converted to strings
+3 in data // => false: no element 3
+
+The instanceof operator expects a left-side operand that is an object and a right-side
+operand that identifies a class of objects. The operator evaluates to true if the leftside
+object is an instance of the right-side class and evaluates to false otherwise.
+Chapter 9 explains that, in JavaScript, classes of objects are defined by the constructor
+function that initializes them. Thus, the right-side operand of instanceof should be a
+function. Here are examples:
+
+let d = new Date(); // Create a new object with the Date() constructor
+d instanceof Date // => true: d was created with Date()
+d instanceof Object // => true: all objects are instances of Object
+d instanceof Number // => false: d is not a Number object
+let a = [1, 2, 3]; // Create an array with array literal syntax
+a instanceof Array // => true: a is an array
+a instanceof Object // => true: all arrays are objects
+a instanceof RegExp // => false: arrays are not regular expressions 
 
 
 

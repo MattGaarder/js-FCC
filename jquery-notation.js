@@ -1,4 +1,5 @@
 // Select existing DOM element
+// the $ sign is an alias for the jQuery function, so you can also use jQuery() instead of $() to accomplish the same thing.
 var rootEl = $('#root');
 
 // Create a `<p>` element. (Any element - but within triangle brackets)
