@@ -61,6 +61,54 @@ a instanceof Array // => true: a is an array
 a instanceof Object // => true: all arrays are objects
 a instanceof RegExp // => false: arrays are not regular expressions 
 
+greeting = "hello " + (username ? username : "there");
+
+This is equivalent to, but more compact than, the following if statement:
+
+greeting = "hello ";
+if (username) {
+greeting += username;
+} else {
+greeting += "there";
+}
+
+?? is a useful alternative to || (§4.10.2) when you want to select the first defined
+operand rather than the first truthy operand. Although || is nominally a logical OR
+operator, it is also used idiomatically to select the first non-falsy operand with code
+like this:
+// If maxWidth is truthy, use that. Otherwise, look for a value in
+// the preferences object. If that is not truthy, use a hardcoded constant.
+let max = maxWidth || preferences.maxWidth || 500;
+The problem with this idiomatic use is that zero, the empty string, and false are all
+falsy values that may be perfectly valid in some circumstances. In this code example,
+if maxWidth is zero, that value will be ignored. But if we change the || operator to ??,
+we end up with an expression where zero is a valid value:
+// If maxWidth is defined, use that. Otherwise, look for a value in
+// the preferences object. If that is not defined, use a hardcoded constant.
+let max = maxWidth ?? preferences.maxWidth ?? 500;
+
+typeof is a unary operator that is placed before its single operand, which can be of
+any type. Its value is a string that specifies the type of the operand. Table 4-3 specifies
+the value of the typeof operator for any JavaScript value.
+
+delete is a unary operator that attempts to delete the object property or array element
+specified as its operand. Like the assignment, increment, and decrement operators,
+delete is typically used for its property deletion side effect and not for the value
+it returns. Some examples:
+
+let o = { x: 1, y: 2}; // Start with an object
+delete o.x; // Delete one of its properties
+"x" in o // => false: the property does not exist anymore
+let a = [1,2,3]; // Start with an array
+delete a[2]; // Delete the last element of the array
+2 in a // => false: array element 2 doesn't exist anymore
+a.length // => 3: note that array length doesn't change, though
+
+Note that a deleted property or array element is not merely set to the undefined
+value. When a property is deleted, the property ceases to exist. Attempting to read a
+nonexistent property returns undefined, but you can test for the actual existence of a
+property with the in operator (§4.9.3). Deleting an array element leaves a “hole” in
+the array and does not change the array’s length.
 
 
 
