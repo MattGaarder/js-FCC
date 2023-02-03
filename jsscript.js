@@ -283,3 +283,226 @@ function checkSign(num) {
 }
 
 checkSign(10);
+
+// more recursive funcions 
+
+function countup(n) {
+  if (n < 1) {
+    return [];
+  } else {
+    const countArray = countup(n - 1);
+    countArray.push(n);
+    return countArray;
+  }
+}
+console.log(countup(5));
+
+// This code defines a function called "countup" which takes in a single argument, "n". 
+// The function uses a recursive approach to generate an array that counts up from 1 to the input value "n".
+
+// The function starts by checking if the input value "n" is less than 1. If it is, the function returns an empty array.
+// If n is not less than 1, the function creates a new variable called "countArray" and assigns the result of calling "countup" function with the value of n-1.
+//  The function then pushes the value of n onto the end of the "countArray" using the Array.prototype.push() method, and finally returns the "countArray".
+
+// The console.log(countup(5)) call the function with an argument of 5, which leads to the function calling itself 4 more times, 
+// with the values of 4, 3, 2, and 1 respectively. each function call will return an array,
+// the first call will return [1], the second call [2,1], the third call [3,2,1] and so on.
+// The final call with the input value of 5 will return [5,4,3,2,1].
+
+// In summary, the code defines a recursive function that takes in a single argument "n"
+//  and generates an array counting up from 1 to the input value "n" using recursion and the Array.prototype.push() method.
+// The function is called with an input value of 5 and prints the final array [5,4,3,2,1] to the console.
+
+// consider this for countdown:
+
+function countdown(n) {
+  if (n < 1) {
+    return [];
+  } else {
+    const arr = countdown(n - 1);
+    arr.unshift(n)
+  }
+  return arr;
+}
+
+// Arrow Functions:
+
+// Use Arrow Functions to Write Concise Anonymous Functions
+// In JavaScript, we often don't need to name our functions, especially when passing a function as an argument to another function.
+// Instead, we create inline functions. We don't need to name these functions because we do not reuse them anywhere else.
+// To achieve this, we often use the following syntax:
+
+const myFunc = function() {
+  const myVar = "value";
+  return myVar;
+}
+
+// ES6 provides us with the syntactic sugar to not have to write anonymous functions this way. Instead, you can use arrow function syntax:
+
+const myFunc = () => {
+  const myVar = "value";
+  return myVar;
+}
+
+// When there is no function body, and only a return value,
+// arrow function syntax allows you to omit the keyword return as well as the brackets surrounding the code.
+// This helps simplify smaller functions into one-line statements:
+
+const myFunc = () => "value";
+
+// This code will still return the string value by default.
+
+// Just like a regular function, you can pass arguments into an arrow function.
+
+const doubler = (item) => item * 2;
+doubler(4);
+doubler(4) would return the value 8.
+
+// If an arrow function has a single parameter, the parentheses enclosing the parameter may be omitted.
+
+const doubler = item => item * 2;
+
+// It is possible to pass more than one argument into an arrow function.
+
+const multiplier = (item, multi) => item * multi;
+multiplier(4, 2);
+multiplier(4, 2) // would return the value 8.
+
+// In order to help us create more flexible functions, ES6 introduces the rest parameter for function parameters.
+// With the rest parameter, you can create functions that take a variable number of arguments.
+// These arguments are stored in an array that can be accessed later from inside the function.
+
+function howMany(...args) {
+  return "You have passed " + args.length + " arguments.";
+}
+
+console.log(howMany(0, 1, 2));
+console.log(howMany("string", null, [1, 2, 3], { }));
+
+// The console would display the strings You have passed 3 arguments. and You have passed 4 arguments..
+// The rest parameter eliminates the need to check the args array and allows us to apply map(), filter() and reduce() on the parameters array.
+
+
+// figure this out at some point:
+
+let frequency = new Map();
+for (let letter of "hello") {
+  let count = frequency.get(letter) || 0;
+  frequency.set(letter, count + 1);
+}
+console.log(frequency);
+
+let m = new Map([[1, "one"]]);
+for(let [key, value] of m) {
+key // => 1
+value // => "one"
+}
+
+
+// Using one API call's results in a second API call
+
+// Function to make the first API call
+function getFirstApiData() {
+  return $.ajax({
+    url: "https://first-api.com/data",
+    method: "GET"
+  });
+}
+
+// Function to make the second API call, passing the data from the first API call
+function getSecondApiData(firstApiData) {
+  return $.ajax({
+    url: "https://second-api.com/data",
+    method: "GET",
+    data: { firstApiData: firstApiData }
+  });
+}
+
+// Call the first function and use its returned promise to call the second function
+getFirstApiData().then(function(firstApiData) {
+  getSecondApiData(firstApiData).then(function(secondApiData) {
+    // Use the data from the second API call here
+    console.log(secondApiData);
+  });
+});
+
+// You can use the bind method or an arrow function to pass the this keyword from the event listener to the function definition.
+// Example using bind:
+
+button.addEventListener("click", function() {
+  myFunction.bind(this)();
+});
+
+function myFunction() {
+  console.log(this);
+}
+
+// Example using an arrow function:
+
+button.addEventListener("click", () => {
+  myFunction.call(this);
+});
+
+function myFunction() {
+  console.log(this);
+}
+
+
+// The .bind method can be used to set the value of this within a function to a specific object. 
+// You pass the object that you want this to refer to as the first argument to the .bind method. For example:
+
+var obj = {
+  prop: "Hello world"
+};
+
+function showProp() {
+  console.log(this.prop);
+}
+
+var boundFn = showProp.bind(obj);
+
+boundFn(); // logs "Hello world"
+
+// In the example above, we have an object obj with a property prop, and a function showProp that logs this.prop.
+// By calling .bind(obj) on showProp, we are creating a new function boundFn
+// where this will always refer to obj when the function is called. When we call boundFn(), it logs "Hello world".
+
+
+// rest parameter and arrow function:
+
+const sum = (x, y, z) => {
+  const args = [x, y, z];
+  return args.reduce((a, b) => a + b, 0);
+}
+
+//goes to:
+
+const sum = (...args) => args.reduce((a, b) => a + b, 0);
+
+
+// ES6 introduces the spread operator, which allows us to expand arrays and other expressions in places where multiple parameters or elements are expected.
+// The ES5 code below uses apply() to compute the maximum value in an array:
+
+var arr = [6, 89, 3, 45];
+var maximus = Math.max.apply(null, arr);
+
+// maximus would have a value of 89.
+// We had to use Math.max.apply(null, arr) because Math.max(arr) returns NaN. Math.max() expects comma-separated arguments, but not an array.
+// The spread operator makes this syntax much better to read and maintain.
+
+const arr = [6, 89, 3, 45];
+const maximus = Math.max(...arr);
+
+// maximus would have a value of 89.
+
+// These are equivalent, and is what is called destructuring assignment, to extract value from objects
+
+const user = { name: 'John Doe', age: 34 };
+
+const name = user.name;
+const age = user.age;
+
+// name would have a value of the string John Doe, and age would have the number 34.
+// the ES6 destructuring syntax:
+
+const { name, age } = user;

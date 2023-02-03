@@ -146,4 +146,132 @@ Note: %20 is a space
 
 Lizzo ID: 56oDRnqbIiwx4mymNEv7dS
 
+Here, for example, is how we can use for/of to loop through the elements of an array
+of numbers and compute their sum:
+
+let data = [1, 2, 3, 4, 5, 6, 7, 8, 9], sum = 0;
+for(let element of data) {
+sum += element;
+}
+sum // => 45
+
+Superficially, the syntax looks like a regular for loop: the for keyword is followed by
+parentheses that contain details about what the loop should do. In this case, the
+parentheses contain a variable declaration (or, for variables that have already been
+declared, simply the name of the variable) followed by the of keyword and an expression
+that evaluates to an iterable object, like the data array in this case. As with all
+loops, the body of a for/of loop follows the parentheses, typically within curly
+braces.
+108 | Chapter 5: Statements
+In the code just shown, the loop body runs once for each element of the data array.
+Before each execution of the loop body, the next element of the array is assigned to
+the element variable. Array elements are iterated in order from first to last.
+Arrays are iterated “live”—changes made during the iteration may affect the outcome
+of the iteration. If we modify the preceding code by adding the line data.push(sum);
+inside the loop body, then we create an infinite loop because the iteration can never
+reach the last element of the array.
+
+for/of with objects
+Objects are not (by default) iterable. Attempting to use for/of on a regular object
+throws a TypeError at runtime:
+let o = { x: 1, y: 2, z: 3 };
+for(let element of o) { // Throws TypeError because o is not iterable
+console.log(element);
+}
+If you want to iterate through the properties of an object, you can use the for/in loop
+(introduced in §5.4.5), or use for/of with the Object.keys() method:
+let o = { x: 1, y: 2, z: 3 };
+let keys = "";
+for(let k of Object.keys(o)) {
+keys += k;
+}
+keys // => "xyz"
+This works because Object.keys() returns an array of property names for an object,
+and arrays are iterable with for/of. Note also that this iteration of the keys of an
+object is not live as the array example above was—changes to the object o made in the
+loop body will have no effect on the iteration. If you don’t care about the keys of an
+object, you can also iterate through their corresponding values like this:
+let sum = 0;
+for(let v of Object.values(o)) {
+sum += v;
+}
+sum // => 6
+And if you are interested in both the keys and the values of an object’s properties, you
+can use for/of with Object.entries() and destructuring assignment:
+let pairs = "";
+for(let [k, v] of Object.entries(o)) {
+pairs += k + v;
+}
+pairs // => "x1y2z3"
+5.4 Loops | 109
+Object.entries() returns an array of arrays, where each inner array represents a
+key/value pair for one property of the object. We use destructuring assignment in this
+code example to unpack those inner arrays into two individual variables.
+
+let frequency = {};
+for(let letter of "mississippi") {
+if (frequency[letter]) {
+frequency[letter]++;
+} else {
+frequency[letter] = 1;
+}
+}
+frequency
+
+This code uses a JavaScript for loop to iterate over the letters of the string "mississippi". It creates an empty object called frequency at the beginning of the code.
+
+For each letter in the string, the code checks if the letter already exists as a key in the frequency object. If it does, it increments the value of that key by 1. If the letter does not exist as a key in the frequency object, it is added as a key with a value of 1.
+
+After the for loop finishes iterating over the string, the frequency object will contain keys for each letter in the string, and the value of each key will be the number of times that letter appears in the string.
+
+let text = "Na na na na na na na na Batman!";
+let wordSet = new Set(text.split(" "));
+let unique = [];
+for(let word of wordSet) {
+unique.push(word);
+}
+This code uses JavaScript to process a string called "text" that contains the phrase "Na na na na na na na na Batman!"
+
+It creates a new JavaScript Set object by using the text string and passing it through the split() method, which separates the string into an array of substrings using the space character as a separator. This creates a set of unique words from the text string.
+
+It then creates an empty array called "unique".
+
+The code then uses a for-of loop to iterate over the elements of the wordSet set. For each word in the wordSet set, it calls the push() method on the "unique" array, adding the current word to the end of the array.
+
+After the for-of loop finishes executing, the "unique" array will contain all the unique words from the text string in the order they appeared in the text.
+
+In this case, the unique array would contain ["Na", "na", "Batman!"]
+
+what does set do?
+
+In JavaScript, a Set is a collection of unique values, which means that it can't contain any duplicate values.
+
+It is similar to an array, but it has some important differences. Elements in a set are unique, and they are not stored in any particular order. Also, sets do not have any indexed elements, so you can't access elements by their index number.
+
+You can add, remove, and check for the presence of elements in a Set, using methods like add(), delete(), and has().
+
+In this specific code, the new Set(text.split(" ")) creates a new set from an array of substrings obtained from the text string using the .split() method with a space character as the separator.
+
+This process eliminates the duplicate words from the text and only keeps the unique words.
+
+
+The for/in statement loops through the property names of a specified object. The
+syntax looks like this:
+for (variable in object)
+statement
+variable typically names a variable, but it may be a variable declaration or anything
+suitable as the left-hand side of an assignment expression. object is an expression that
+evaluates to an object. As usual, statement is the statement or statement block that
+serves as the body of the loop.
+And you might use a for/in loop like this:
+for(let p in o) { // Assign property names of o to variable p
+console.log(o[p]); // Print the value of each property
+}
+To execute a for/in statement, the JavaScript interpreter first evaluates the object
+expression. If it evaluates to null or undefined, the interpreter skips the loop and
+moves on to the next statement. The interpreter now executes the body of the loop
+once for each enumerable property of the object. Before each iteration, however, the
+interpreter evaluates the variable expression and assigns the name of the property (a
+string value) to it.
+
 
