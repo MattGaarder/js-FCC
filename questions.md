@@ -24,3 +24,6 @@ function draw() {
 }
 
 What does createCanvas and ellipse do? What are different utilisations of this?
+
+
+ const [a, b,...shorterList] = list // ASK ABOUT THIS. HOW IS THIS AN ASSIGNMENT? [Destructuring via rest elements]

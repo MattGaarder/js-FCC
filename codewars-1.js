@@ -281,3 +281,118 @@ function isVow(a){
 }
 
 
+// // Complete the solution so that it returns true if the first argument(string) passed in ends with the 2nd argument (also a string).
+// https://www.codewars.com/kata/51f2d1cafc9c0f745c00037d/train/javascript
+// Test: Test.assertEquals(solution('abcde', 'cde'), true)
+// Test.assertEquals(solution('abcde', 'abc'), false)
+
+str = "abcde";
+ending = "cde";
+
+function solution(str, ending){
+    // get length of ending. (cde) would be 3
+    // get length of string. (abcde) would be 5
+    // check if the value of the last index of ending is equal to the value of string length minus the length of ending.
+    // Starting with -1 and iterating -1 for the length of ending. 
+    // TODO: complete
+    // var endingLength = ending.length;
+    console.log(str);
+    console.log(ending);
+    lastLetterOfStr = str[str.length - 1]; //this is equal to e
+    console.log(lastLetterOfStr)
+    lastLetterOfEnding = ending[ending.length -1]
+    console.log(lastLetterOfEnding); //this is also equal to e
+    for(i = -1; i >= -(ending.length); i--) {
+      console.log(str[str.length + i]) // this logs e, d, c
+      console.log(ending[ending.length + i])
+      return str[str.length + i] === ending[ending.length + i]
+    }
+    // i is -1. ending.length is -3. i(-1) is greater than -3.
+    //console.log(str[5 - 1]) // e
+    // iterate: i is -2. -2 is greater than -3.
+  }
+  
+  solution(str, ending);
+
+// for(i = -1; i > -(ending.length); i--) {
+//   console.log(str[str.length[i]])
+// }
+// The brackets [ ] are used to access an element in an array or a property of an object, but here the brackets are nested, which is not allowed.
+// To access the character at index i of the str string, you should use str[str.length + i] instead. This will add the negative value of i to the length of str, 
+// which effectively counts backwards from the end of the string.
+
+// For easy reading. Ignore the code above.
+
+function solution(str, ending) {
+  for (i = -1; i >= -(ending.length); i--) {
+    if (str[str.length + i] === ending[ending.length + i]) {
+      return true
+    }
+  }
+  return false
+}
+
+// Alternative 1. 
+
+function solution(str, ending) {
+  for (let i = 1; i <= ending.length; i++) {
+    if (str[str.length - i] !== ending[ending.length - i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// So you did it in the complicated way (good for you), but the actually good solution is:
+
+function solution(str, ending){
+  return str.endsWith(ending);
+}
+
+// Alternative 3.
+
+function solution(str, ending){
+  var l = ending.length;
+  var str = str.slice(-l);
+  return str.match(ending) ? true : false;
+}
+
+// To be a senior, a member must be at least 55 years old and have a handicap greater than 7.
+// In this croquet club, handicaps range from -2 to +26; the better the player the lower the handicap.
+// https://www.codewars.com/kata/5502c9e7b3216ec63c0001aa/train/javascript
+
+function openOrSenior(data) {
+  let result = [];
+  for (i = 0; i < data.length; i++) {
+    if (data[i][0] > 54 && data[i][1] > 7) {
+      result.push("Senior")
+    } else {
+      result.push("Open")
+    }
+  }
+  return result
+}
+
+// Alternative method:
+
+function openOrSenior(data){
+  return data.map(function(d){
+    return d[0] >= 55 && d[1] > 7 ? 'Senior' : 'Open';
+  });
+}
+
+// or
+
+function openOrSenior(data){
+  return data.map(([age, handicap]) => (age > 54 && handicap > 7) ? 'Senior' : 'Open');
+}
+
+// Take the data array and call map
+// For each, [arguments]
+// return ... logic (ternary operator)
+
+// Map function takes a callback function. In that callback function, we've defined our parameter as age/handicap
+// In the callback function we define we show how to transform each individual item to the new one that we want in the resulting array
+// Map returns an array. Or anything else, like an object for example:
+
+const minfiedRecords = characters.map(character => ({name: character.name, height: character.heigth}))

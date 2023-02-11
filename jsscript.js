@@ -356,17 +356,23 @@ const myFunc = () => "value";
 
 const doubler = (item) => item * 2;
 doubler(4);
-doubler(4) would return the value 8.
+// doubler(4) would return the value 8.
 
 // If an arrow function has a single parameter, the parentheses enclosing the parameter may be omitted.
 
 const doubler = item => item * 2;
 
+// This is the non-arrow function equivalent of this code 
+
+function doubler(item) {
+  return item * 2;
+}
+
+
 // It is possible to pass more than one argument into an arrow function.
 
 const multiplier = (item, multi) => item * multi;
-multiplier(4, 2);
-multiplier(4, 2) // would return the value 8.
+multiplier(4, 2); // would return the value 8.
 
 // In order to help us create more flexible functions, ES6 introduces the rest parameter for function parameters.
 // With the rest parameter, you can create functions that take a variable number of arguments.
@@ -506,3 +512,80 @@ const age = user.age;
 // the ES6 destructuring syntax:
 
 const { name, age } = user;
+
+// more destructuring assignments:
+// Normal nested object:
+
+const user = {
+  johnDoe: { 
+    age: 34,
+    email: 'johnDoe@freeCodeCamp.com'
+  }
+};
+
+// Here's how to extract the values of object properties and assign them to variables with the same name:
+
+const { johnDoe: { age, email }} = user;
+
+// And here's how you can assign an object properties' values to variables with different names:
+
+const { johnDoe: { age: userAge, email: userEmail }} = user;
+
+// Destructuring assignment with arrays
+
+const [a, b,,, c] = [1, 2, 3, 4, 5, 6];
+console.log(a, b, c);
+
+// The console will display the values of a, b, and c as 1, 2, 5.
+
+// Destructuring via rest elements
+// In some situations involving array destructuring, we might want to collect the rest of the elements into a separate array.
+
+// The result is similar to Array.prototype.slice(), as shown below:
+
+const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
+console.log(a, b);
+console.log(arr);
+
+// The console would display the values 1, 2 and [3, 4, 5, 7].
+
+function removeFirstTwo(list) {
+  // Only change code below this line
+ const [a, b,...shorterList] = list // ASK ABOUT THIS. HOW IS THIS AN ASSIGNMENT? [Destructuring via rest elements]
+  // Only change code above this line
+  return shorterList;
+}
+
+const source = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const sourceWithoutFirstTwo = removeFirstTwo(source);
+
+// Use Destructuring Assignment to Pass an Object as a Function's Parameters
+// In some cases, you can destructure the object in a function argument itself.
+
+// Consider the code below:
+
+const profileUpdate = (profileData) => {
+  const { name, age, nationality, location } = profileData;
+}
+
+// This effectively destructures the object sent into the function. This can also be done in-place:
+
+const profileUpdate = ({ name, age, nationality, location }) => {
+}
+// When profileData is passed to the above function, the values are destructured from the function parameter for use within the function.
+
+// Compare these two syntaxes:
+// Destructured version.
+
+const stats = {
+  max: 56.78,
+  standard_deviation: 4.34,
+  median: 34.54,
+  mode: 23.87,
+  min: -0.75,
+  average: 35.85
+};
+
+const half = ({max, min}) => (max + min) / 2.0; 
+// Not destructured version:
+const half = (stats) => (stats.max + stats.min) / 2.0; 

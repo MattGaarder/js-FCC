@@ -275,3 +275,146 @@ interpreter evaluates the variable expression and assigns the name of the proper
 string value) to it.
 
 
+OBJECTS:
+
+Objects can be created with object literals, with the new keyword, and with the
+Object.create()
+
+6.2.2 Creating Objects with new
+The new operator creates and initializes a new object. The new keyword must be followed
+by a function invocation. A function used in this way is called a constructor and
+serves to initialize a newly created object. JavaScript includes constructors for its
+built-in types. For example:
+let o = new Object(); // Create an empty object: same as {}.
+let a = new Array(); // Create an empty array: same as [].
+let d = new Date(); // Create a Date object representing the current time
+let r = new Map(); // Create a Map object for key/value mapping
+
+Object.create() creates a new object, using its first argument as the prototype of
+that object:
+let o1 = Object.create({x: 1, y: 2}); // o1 inherits properties x and y.
+o1.x + o1.y // => 3
+
+6.3 Querying and Setting Properties
+To obtain the value of a property, use the dot (.) or square bracket ([]) operators
+described in §4.4. The lefthand side should be an expression whose value is an object.
+If using the dot operator, the righthand side must be a simple identifier that names
+the property. If using square brackets, the value within the brackets must be an
+expression that evaluates to a string that contains the desired property name:
+let author = book.author; // Get the "author" property of the book.
+let name = author.surname; // Get the "surname" property of the author.
+let title = book["main title"]; // Get the "main title" property of the book.
+
+As explained in the preceding section, the following two JavaScript expressions have
+the same value:
+object.property
+object["property"]
+The first syntax, using the dot and an identifier, is like the syntax used to access a
+static field of a struct or object in C or Java. The second syntax, using square brackets
+and a string, looks like array access, but to an array indexed by strings rather than by
+numbers. This kind of array is known as an associative array (or hash or map or dictionary).
+JavaScript objects are associative arrays, and this section explains why that is
+important.
+
+On the other hand, when you access a property of an object with the [] array notation,
+the name of the property is expressed as a string. Strings are JavaScript datatypes,
+so they can be manipulated and created while a program is running. So, for
+example, you can write the following code in JavaScript:
+let addr = "";
+for(let i = 0; i < 4; i++) {
+addr += customer[`address${i}`] + "\n";
+}
+This code reads and concatenates the address0, address1, address2, and address3
+properties of the customer object.
+This brief example demonstrates the flexibility of using array notation to access properties
+of an object with string expressions. This code could be rewritten using the dot
+notation, but there are cases in which only the array notation will do. Suppose, for
+example, that you are writing a program that uses network resources to compute the
+current value of the user’s stock market investments. The program allows the user to
+type in the name of each stock they own as well as the number of shares of each stock.
+You might use an object named portfolio to hold this information. The object has
+134 | Chapter 6: Objects
+one property for each stock. The name of the property is the name of the stock, and
+the property value is the number of shares of that stock. So, for example, if a user
+holds 50 shares of stock in IBM, the portfolio.ibm property has the value 50.
+Part of this program might be a function for adding a new stock to the portfolio:
+function addstock(portfolio, stockname, shares) {
+portfolio[stockname] = shares;
+}
+Since the user enters stock names at runtime, there is no way that you can know the
+property names ahead of time. Since you can’t know the property names when you
+write the program, there is no way you can use the . operator to access the properties
+of the portfolio object. You can use the [] operator, however, because it uses a string
+value (which is dynamic and can change at runtime) rather than an identifier (which
+is static and must be hardcoded in the program) to name the property.
+
+In Chapter 5, we introduced the for/in loop (and we’ll see it again shortly, in §6.6).
+The power of this JavaScript statement becomes clear when you consider its use with
+associative arrays. Here is how you would use it when computing the total value of a
+portfolio:
+function computeValue(portfolio) {
+let total = 0.0;
+for(let stock in portfolio) { // For each stock in the portfolio:
+let shares = portfolio[stock]; // get the number of shares
+let price = getQuote(stock); // look up share price
+total += shares * price; // add stock value to total value
+}
+return total; // Return total value.
+}
+
+let o = {}; // o inherits object methods from Object.prototype
+o.x = 1; // and it now has an own property x.
+let p = Object.create(o); // p inherits properties from o and Object.prototype
+p.y = 2; // and has an own property y.
+let q = Object.create(p); // q inherits properties from p, o, and...
+q.z = 3; // ...Object.prototype and has an own property z.
+let f = q.toString(); // toString is inherited from Object.prototype
+q.x + q.y // => 3; x and y are inherited from o and p
+
+Now suppose you assign to the property x of the object o. If o already has an own
+(non-inherited) property named x, then the assignment simply changes the value of
+this existing property. Otherwise, the assignment creates a new property named x on
+the object o. If o previously inherited the property x, that inherited property is now
+hidden by the newly created own property with the same name.
+Property assignment examines the prototype chain only to determine whether the
+assignment is allowed. If o inherits a read-only property named x, for example, then
+the assignment is not allowed. (Details about when a property may be set are in
+§6.3.3.) If the assignment is allowed, however, it always creates or sets a property in
+the original object and never modifies objects in the prototype chain. The fact that
+inheritance occurs when querying properties but not when setting them is a key feature
+of JavaScript because it allows us to selectively override inherited properties:
+
+let unitcircle = { r: 1 }; // An object to inherit from
+let c = Object.create(unitcircle); // c inherits the property r
+c.x = 1; c.y = 1; // c defines two properties of its own
+c.r = 2; // c overrides its inherited property
+unitcircle.r // => 1: the prototype is not affected
+
+The in operator expects a property name on its left side and an object on its right. It
+returns true if the object has an own property or an inherited property by that name:
+let o = { x: 1 };
+"x" in o // => true: o has an own property "x"
+"y" in o // => false: o doesn't have a property "y"
+"toString" in o // => true: o inherits a toString property
+The hasOwnProperty() method of an object tests whether that object has an own
+property with the given name. It returns false for inherited properties:
+let o = { x: 1 };
+o.hasOwnProperty("x") // => true: o has an own property x
+o.hasOwnProperty("y") // => false: o doesn't have a property y
+o.hasOwnProperty("toString") // => false: toString is an inherited property
+
+In ES6 and later, string literals can be delimited with backticks:
+let s = `hello world`;
+This is more than just another string literal syntax, however, because these template
+literals can include arbitrary JavaScript expressions. The final value of a string literal
+in backticks is computed by evaluating any included expressions, converting the values
+of those expressions to strings and combining those computed strings with the
+literal characters within the backticks:
+let name = "Bill";
+let greeting = `Hello ${ name }.`; // greeting == "Hello Bill."
+Everything between the ${ and the matching } is interpreted as a JavaScript expression.
+Everything outside the curly braces is normal string literal text. The expression
+inside the braces is evaluated and then converted to a string and inserted into the
+template, replacing the dollar sign, the curly braces, and everything in between them.
+
+
