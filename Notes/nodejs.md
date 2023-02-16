@@ -1,3 +1,27 @@
+### Important code that loads nvm
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+### Code for the version we want
+
+Matts-MacBook-Air:Buttcamp matt$  -  nvm use v16.19.0
+
+### To find out what PID for process on the port
+
+First, you would want to know which process is using port (3000)
+
+sudo lsof -i :3000
+
+this will list all PID listening on this port, once you have the PID you can terminate it with the following:
+
+kill -9 <PID>
+
+where you replace <PID> by the process ID, or the list of process IDs, the previous command output.
+
+
+
 ### The Node.js file system module allows you to work with the file system on your computer.
 
 var http = require('http');
@@ -59,27 +83,6 @@ http.createServer(function (req, res) {
   });
 }).listen(8080);
 
-### Important code that loads nvm
-
-export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-### Code for the version we want
-
-Matts-MacBook-Air:Buttcamp matt$  -  nvm use v16.19.0
-
-### To find out what PID for process on the port
-
-First, you would want to know which process is using port (3000)
-
-sudo lsof -i :3000
-
-this will list all PID listening on this port, once you have the PID you can terminate it with the following:
-
-kill -9 <PID>
-
-where you replace <PID> by the process ID, or the list of process IDs, the previous command output.
 
 ## Create files
 
