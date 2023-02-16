@@ -68,3 +68,38 @@ export NVM_DIR="$HOME/.nvm"
 ### Code for the version we want
 
 Matts-MacBook-Air:Buttcamp matt$  -  nvm use v16.19.0
+
+### To find out what PID for process on the port
+
+First, you would want to know which process is using port (3000)
+
+sudo lsof -i :3000
+
+this will list all PID listening on this port, once you have the PID you can terminate it with the following:
+
+kill -9 <PID>
+
+where you replace <PID> by the process ID, or the list of process IDs, the previous command output.
+
+## Create files
+
+Create Files
+The File System module has methods for creating new files:
+
+fs.appendFile()
+fs.open()
+fs.writeFile()
+
+The fs.appendFile() method appends specified content to a file. If the file does not exist, the file will be created:
+
+ExampleGet your own Node.js Server
+Create a new file using the appendFile() method:
+
+var fs = require('fs');
+
+fs.appendFile('mynewfile1.txt', 'Hello content!', function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+});
+
+The fs.open() method takes a "flag" as the second argument, if the flag is "w" for "writing", the specified file is opened for writing. If the file does not exist, an empty file is created:
