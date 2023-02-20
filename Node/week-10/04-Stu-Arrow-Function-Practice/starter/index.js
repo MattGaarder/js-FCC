@@ -1,5 +1,5 @@
 // 1. funnyCase makes each letter in a string the opposite case as the one before
-var funnyCase = (string) => {
+var funnyCase = function(string) {
   var newString = "";
   for (var i = 0; i < string.length; i++) {
     if (i % 2 === 0) newString += string[i].toLowerCase();
@@ -14,7 +14,7 @@ console.log(funnyCase("You can't just do whatever you want all the time!"));
 // --------------------------------------------------------------------------
 
 // 2. Map lets you loop over an array and modify the elements inside
-var map = (arr, cb) => {
+var map = function (arr, cb) {
   var result = [];
   for (var index = 0; index < arr.length; index++) {
     var currentElement = arr[index];
@@ -29,13 +29,13 @@ var doubled = map(numbers, (element) => {
   return element * 2;
 });
 
-// Prints `[ 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 ]`
 console.log(doubled);
+// Prints `[ 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 ]`
 
 // --------------------------------------------------------------------------
 
 // 3. filter lets you loop over an array and remove elements
-var filter = (arr, cb) => {
+var filter = function(arr, cb) {
   var result = [];
   for (var index = 0; index < arr.length; index++) {
     var currentElement = arr[index];
@@ -46,12 +46,15 @@ var filter = (arr, cb) => {
   return result;
 };
 
-var evenNumbers = filter(numbers, (currentElement) => {
+var evenNumbers = filter(numbers, function(currentElement) {
   return currentElement % 2 === 0;
 });
 
+var evenNumbersArrow = filter(numbers, currentElement => currentElement % 2 === 0);
+
 // Prints `[ 2, 4, 6, 8, 10 ]`
 console.log(evenNumbers);
+console.log(evenNumbersArrow)
 
 // --------------------------------------------------------------------------
 
@@ -63,13 +66,13 @@ var netflixQueue = {
     "Eternal Sunshine of the Spotless Mind",
     "Fight Club"
   ],
-  watchMovie: () => {
+  watchMovie: function() {
     this.queue.pop();
   },
-  addMovie: (movie) => {
+  addMovie: function(movie) {
     this.queue.unshift(movie);
   },
-  printQueue: () => {
+  printQueue: function() {
     var list = "";
     for (var i = this.queue.length - 1; i >= 0; i--) {
       var currentMovie = this.queue[i];
@@ -89,3 +92,46 @@ console.log("\nAdding a movie!\n");
 netflixQueue.addMovie("Black Swan");
 console.log("Printing movie queue!\n");
 netflixQueue.printQueue();
+
+
+// // Notes: 
+// var createGreeting = function(message, name) {
+//   return message + "," + name + "!";
+// };
+
+// console.log(createGreeting("What's up", "Matt"));
+
+// var createArrowFunctionGreeting = (messagew, namew) => {
+//   return messagew + ", " + namew + "!";
+// };
+
+// console.log(createArrowFunctionGreeting("yoyo", "Chicken Soop"));
+
+// // If the function body contains only one expression, no curly braces or return
+// var createShrtArrowFunctionGreeting = (messagew2, namew2) => messagew2 + ", " + namew2  + "!";
+
+// console.log(createShrtArrowFunctionGreeting("poyo", "Chicken Seop"));
+
+// // If an arrow function only has one parameter, we can omit the parens around the single parameter
+
+// var greet = greeting => console.log(greeting);
+
+// greet("happy vday");
+
+// // If an arrow function has no parameters then in needs parens 
+
+// var printHelloWorld = () => console.log("Hello, world");
+
+// printHelloWorld();
+
+// // We call arrow functions the same way as we call regular functions
+
+
+// // These two functions are functionally equivalent
+
+// var greetReg = greeting => console.log(greeting);
+
+// function greetReg(greeting) {
+//   return console.log(greeting);
+// };
+

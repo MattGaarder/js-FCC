@@ -1,10 +1,20 @@
 // giphy API IIu7hbfeNksOlVn1A85AFKBAyFp2ZJBk
 
-// SHORTCUT: cmd + shift + H for find and replace all occurences of x
-// option + up/down to move line up or down
-// cmd + D for selecting repeating instances of x
-// shift + tab to unindent 
+// SHORTCUT: cmd + shift + "H"     for find and replace all occurences of x
+// option + up/down    to move line up or down
+// cmd + "D"     for selecting repeating instances of x
+// shift + tab     to unindent 
+// cmd + shift + "."    (show hidden files)
+
+// source ~/.bashrc     load recently made changes
+// nano ~/.bashrc     open in text editor 
 // Markdown: [Link](url) makes whatever text you want into a clickable link
+
+// *   - Press `⌘ K, J` to create a new JavaScript File QUORKA
+// * To start/restart Quokka on an existing file:
+// *   - Press `⌘ K, Q`
+
+// shift + cmd + "P"    open preferences/search for extensions 
 
 
 
