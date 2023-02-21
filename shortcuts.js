@@ -16,6 +16,20 @@
 
 // shift + cmd + "P"    open preferences/search for extensions 
 
+// npm init -y
+
+// The output generates package.JSON file, with meta information about node project
+// main file to run/script/dependencies etc. 
+// "I want to load a package and to tell project to keep track of it"
+
+// npm install badmath
+
+
+
+// intialize project to use npm to keep track of dependencies
+
+// Download module and use in own project
+
 
 
 // The join() method creates and returns a new string by concatenating all 

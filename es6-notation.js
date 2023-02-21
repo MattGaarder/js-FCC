@@ -53,6 +53,9 @@ var evenNumbers = filter(numbers, function (currentElement) {
 var evenNumbersArrow = filter(numbers, currentElement => currentElement % 2 === 0);
 
 // ONE PARAMETER, ONE LINE, AND THAT LINE GETS USED AS THE RETURN VALUE
+// FOR EACH RUNS ON THE ORIGINAL ARRAY:
+// FILTER RETURNS ANOTHER ARRAY SMALLER THAN OR HE SAME SIZE 
+// MAP RETURNS ANOTHER ARRAY OF THE SAME SIZE 
 
 
 // Prints `[ 2, 4, 6, 8, 10 ]`
@@ -93,14 +96,43 @@ const moviePatrons = [
   const canWatchRatedR = moviePatrons.filter((patron) => patron.age > 17);
   
   console.log(canWatchRatedR);
-  
+
+
+  // This is functionally equivalent to the next function (You see how this gets significantly shorter)
+
+  const fiveCharPeeps = moviePatrons.filter(
+    (patron) => patron.name.length === 5
+  );
+
+  const fiveCharPeepsT = moviePatrons.filter((patron) => {
+    if (patron.name.length === 5) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  console.log(fiveCharPeepsT);
+
   // 3.
   
   // Map returns a brand new array the same length as the first. Each element is passed into the callback.
   // Whatever is returned from the callback at each iteration is what goes into that index of the new array
-  
+  // Functionally equivalent to this.
+  // Bear and mind that some of these variables have altered names.
+
+  const cardedMovie2 = [];
+  for (let i = 0; i < moviePatrons.length; i++) {
+    if (patron.age >=17) {
+      cardedMovie2.push(true);
+    } else {
+      cardedMovie2.push(false)
+    }
+  }
+
   const cardedMoviePatrons = moviePatrons.map(patron => {
     // Copy the object being iterated over
+    // Spread operator (copies every element of the array and adds a new property to it.)
     const pObj = { ...patron };
     // Do everything else the same
     if (pObj.age >= 17) {
@@ -117,3 +149,43 @@ const moviePatrons = [
   
   console.log("\nCarded Movie Patrons: ");
   console.log(cardedMoviePatrons);
+
+  // Template literals. Much better way of doing the line below:
+
+var oldFashioned = "My name is " + arya.first + "!\nI am loyal to " + arya.allegiance + ".";
+
+  const arya = {
+    first: "Arya",
+    last: "Stark",
+    origin: "Winterfell",
+    allegiance: "House Stark"
+  };
+
+  // We can use destructuring with arrow functions to produce something like the following 
+
+  const formalHouseName = house => `The great house ${house}`;
+  // A function that takes in a string a produces a new string.
+  
+  const greeting = `My name is ${arya.first}!
+  I am loyal to ${formalHouseName(arya.allegiance)}.`;
+
+  // This basically demonstrates that any javascript expression can be placed within the literals, includings functions
+  // They will simply be evaluated and placed into a string
+
+
+  //Gets evaluated and placed in the string
+  //White space is maintained.
+  //Basically backtick instead of quotes. Just part of the ES6 syntax
+  // Within the curly braces can be any javascript expression
+  
+  console.log(greeting); // prints
+  // My name is Arya!
+  // I am loyal to House Stark.
+
+const pie = 'apple';
+const predictable = () => 1;
+// module.exports is an object we use to store variables or methods
+module.exports = {
+  pie, // MEANS pie: pie, 
+  predictable, // MEANS predicatble: predictable, 
+};
