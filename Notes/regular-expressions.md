@@ -48,3 +48,20 @@ Would match sequence and This, sequence, is Hello etc.
 
 
 
+
+
+```
+  function removeVowels(str) {
+    return str.replace(/[aeiou]/gi, '');
+  }
+```
+
+  The section /[aeiou]/gi is a regular expression that matches any character that is a vowel, regardless of its case. 
+
+  The forward slashes / at the beginning and end of the regular expression indicate that it is a regular expression literal.
+
+  The square brackets [aeiou] define a character set that matches any character that is one of the letters "a", "e", "i", "o", or "u".
+
+  The g flag stands for "global", which means that the regular expression should match all instances of the pattern in the input string, not just the first one.
+
+  The i flag stands for "case insensitive", which means that the regular expression should match both upper and lower case vowels.

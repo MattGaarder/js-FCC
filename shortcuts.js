@@ -5,6 +5,11 @@
 // cmd + "D"     for selecting repeating instances of x
 // shift + tab     to unindent 
 // cmd + shift + "."    (show hidden files)
+// Fn + F1    to open command palette 
+// shift + alt + "F"    format selection
+// alt + "B"    to open in default browser
+// cmd + "E"    for three backticks for quote blocking code
+// option + shift + up/down   to copy up or down
 
 // source ~/.bashrc     load recently made changes
 // nano ~/.bashrc     open in text editor 
@@ -17,12 +22,25 @@
 // shift + cmd + "P"    open preferences/search for extensions 
 
 // npm init -y
+// npm start
+// Be sure to kill this local server with `ctrl + c` 
+// npx create-react-app reactpractice`
 
 // The output generates package.JSON file, with meta information about node project
 // main file to run/script/dependencies etc. 
 // "I want to load a package and to tell project to keep track of it"
 
 // npm install badmath
+
+// export NVM_DIR="$HOME/.nvm"
+//   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+//   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+// sudo lsof -i :3000   to show what operations are being performed on the port 
+
+// this will list all PID listening on this port, once you have the PID you can terminate it with the following:
+
+// kill -9
 
 
 

@@ -189,3 +189,56 @@ module.exports = {
   pie, // MEANS pie: pie, 
   predictable, // MEANS predicatble: predictable, 
 };
+
+
+// MORE OBJECT DESTRUCTURING BUT SUPER HELPFUL EXAMPLE
+
+const dogs = {
+    raining: true,
+    noise: "woof",
+    makeNoise: function(){
+        if(this.raining){
+            console.log(this.noise)
+        }
+    },
+};
+
+const cats = {
+    raining: false,
+    noise: "meow",
+    makeNoise: function(){
+        if(!this.raining){
+            console.log(this.noise)
+        }
+    },
+};
+dogs.makeNoise()
+cats.makeNoise();
+
+
+// Cannot desturcture raining twice as it is already used. So just reassign it to a new variable
+const massHysteria = ({raining}, {raining: raining2}) => {
+    if(raining && raining2){
+        console.log("Cats & Dogs, mass hysterial")
+    }
+}
+
+cats.raining = true;
+massHysteria(dogs, cats);
+
+// How to use constructors 
+
+// Constructor function which can be used to create objects containing the properties "raining", "noise", and the "makeNoise()" function
+function Animal(raining, noise) {
+    this.raining = raining;
+    this.noise = noise;
+    this.makeNoise = () => {
+      if (this.raining === true) {
+        console.log(this.noise);
+      }
+    };
+  }
+  
+  // Sets the variables "dogs" and "cats" to be animal objects and initializes them with raining and noise properties
+  const dogs = new Animal(true, "Woof!");
+  const cats = new Animal(false, "Meow!");
