@@ -85,3 +85,11 @@ Add `import 'bootstrap/dist/css/bootstrap.min.css';` to the `index.js` file.
 All JSX tags must either have an adjacent tag or else have a self-closing forward slash.
 
 `className` must be used to describe an element's `class` property since `class` is a reserved word in JavaScript.
+
+## This is a JSX element logged to the console
+
+{$$typeof: Symbol(react.element),
+ type: 'h1',
+  key: null,
+   ref: null,
+    props: {…}, …}$$typeof: Symbol(react.element)key: nullprops: {className: 'header', children: 'This is JSX'}ref: nulltype: "h1"_owner: null_store: {validated: false}_self: undefined_source: {fileName: '/Users/matt/Desktop/mgaarder-portfolio/mgaarder-portfolio/src/index.js', lineNumber: 15, columnNumber: 17}[[Prototype]]: Object
