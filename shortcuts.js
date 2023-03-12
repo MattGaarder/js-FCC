@@ -10,9 +10,12 @@
 // alt + "B"    to open in default browser
 // cmd + "E"    for three backticks for quote blocking code
 // option + shift + up/down   to copy up or down
+// Use the F12 / shift + command + "I"     shortcut to quickly open the Developer Tools.
 
 // source ~/.bashrc     load recently made changes
 // nano ~/.bashrc     open in text editor 
+
+// relative path to bashprofile: /Users/matt/.bash_profile
 // Markdown: [Link](url) makes whatever text you want into a clickable link
 
 // *   - Press `⌘ K, J` to create a new JavaScript File QUORKA

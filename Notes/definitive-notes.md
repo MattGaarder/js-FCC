@@ -418,3 +418,51 @@ inside the braces is evaluated and then converted to a string and inserted into 
 template, replacing the dollar sign, the curly braces, and everything in between them.
 
 
+Lower-level module that allows us to make http from our node code. 
+Rather than finding a package, it lets us put together what we would do on the front-end with ajax or fetch.
+(Basically a module that allows us to make http requests).
+
+const axios = require("axios");
+
+function MovieSearch() {}
+
+MovieSearch.prototype.buildUrl = function(movie){
+    return `https://www.omdbapi.com/?t=${movie}&apikey=trilogy`;
+};
+
+makes http request to the above URL
+
+MovieSearch.prototype.search = function(movie) {
+    return axios.get(this.buildUrl(movie));
+};
+
+module.exports = MovieSearch
+
+what would use this - index.js:
+
+const MovieSearch = require("./movieSearch");
+
+const movie = new MovieSearch();
+
+movie.search("spider-man)
+    .then(res => console.log(res.json))  // after promise comes back, res.json is logged
+
+
+// Constructor is a keyword - is the same as a new Constructor { etc. }
+
+class Shape {
+  // Just like constructor functions, classes can accept arguments
+  constructor(area, perimeter) {
+    this.area = area;
+    this.perimeter = perimeter;
+  }
+
+  printInfo() {
+    console.log(`Area: ${this.area}`);
+    console.log(`Perimeter: ${this.perimeter}`);
+  }
+}
+
+const shape = new Shape(25, 25);
+
+shape.printInfo();

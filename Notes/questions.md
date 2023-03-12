@@ -27,3 +27,9 @@ What does createCanvas and ellipse do? What are different utilisations of this?
 
 
  const [a, b,...shorterList] = list // ASK ABOUT THIS. HOW IS THIS AN ASSIGNMENT? [Destructuring via rest elements]
+
+ // Question: Is it possible to not have to repeat these parameters? (team-profile-generator  Engineer)
+
+ How can I use a relative path in my JSON so that they can be iterated through in my index.js? (react-portfolio)
+
+ // const { info } = require("console"); // I'm not sure what this is for 

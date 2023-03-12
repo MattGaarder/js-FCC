@@ -242,3 +242,66 @@ function Animal(raining, noise) {
   // Sets the variables "dogs" and "cats" to be animal objects and initializes them with raining and noise properties
   const dogs = new Animal(true, "Woof!");
   const cats = new Animal(false, "Meow!");
+
+
+
+
+
+
+  // ! IMPORTANT 
+  // This is the ES6 way to write a constructor function (with a 'class')
+
+  class Shape {
+    // Just like constructor functions, classes can accept arguments. Classes are just a type of function (like below)
+    constructor(area, perimeter) {
+      this.area = area;
+      this.perimeter = perimeter;
+    }
+  
+    printInfo() {
+      console.log(`Area: ${this.area}`);
+      console.log(`Perimeter: ${this.perimeter}`);
+    }
+  }
+  
+  const shape = new Shape(25, 25);
+  
+  shape.printInfo();
+
+  // This is the equivalent older way of doing the same thing. EXACTLY THE SAME THING NO GOTCHAS
+
+  function Shape(area, perimeter) {
+    this.area = area;
+    this.perimeter = perimeter;
+  };
+
+  Shape.prototype.printInfo = function() {
+    console.log(`Area: ${this.area}`);
+    console.log(`Perimeter: ${this.perimeter}`)
+  };
+
+  const shape = new Shape(25, 25);
+
+  Shape.prototype.numberOfShapes = 0; // If you want to declare a variable that is not inside the constructor this is the way to do it.
+
+
+
+  // to use inheritance in conjuction with classes to reduce the repetition on our code use the following functionality:
+
+  const Shape = require("./shape");
+
+  class Circle extends Shape {
+    constructor(radius) {
+      const area = radius*radius*3.14;
+      const perimeter = 2*radius*3.14;
+      // "super" refers to the constructor of the extended class
+      // in this case, super is the constructor for the parent class "Shape"
+      super(area, perimeter);
+      this.radius = radius;
+    }
+  }
+
+  const circle = new Circle(10);
+  circle.printInfo();
+
+  module.exports = Circle 
