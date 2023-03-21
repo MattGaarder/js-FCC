@@ -18,3 +18,33 @@
     --pathspec-from-file <file>
                           read pathspec from file
     --pathspec-file-nul   with --pathspec-from-file, pathspec elements are separated with NUL character
+
+
+Finally, we use git reset --hard origin/master to force git pull. This will force overwrite any local changes you made. 
+
+import logo from './logo.svg';
+import './App.css';
+import { app } from './firebaseConfig'
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Welcome to Vibely. All we do is send good vibes.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App;
