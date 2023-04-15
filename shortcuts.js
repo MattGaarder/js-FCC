@@ -22,6 +22,10 @@
 // * To start/restart Quokka on an existing file:
 // *   - Press `⌘ K, Q`
 
+// VScode 
+
+// cmd + k + v    open preview to side
+
 // shift + cmd + "P"    open preferences/search for extensions 
 
 // npm init -y
