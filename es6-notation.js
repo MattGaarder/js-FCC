@@ -36,6 +36,8 @@ printHelloWorld();
 // We call arrow functions the same way as we call regular functions
 
 
+
+
 // These two functions are functionally equivalent
 
 var greetReg = greeting => console.log(greeting);
@@ -43,6 +45,8 @@ var greetReg = greeting => console.log(greeting);
 function greetReg(greeting) {
   return console.log(greeting);
 };
+
+
 
 // These two functions are functionally equivalent!!
 
@@ -56,8 +60,6 @@ var evenNumbersArrow = filter(numbers, currentElement => currentElement % 2 === 
 // FOR EACH RUNS ON THE ORIGINAL ARRAY:
 // FILTER RETURNS ANOTHER ARRAY SMALLER THAN OR HE SAME SIZE 
 // MAP RETURNS ANOTHER ARRAY OF THE SAME SIZE 
-
-
 // Prints `[ 2, 4, 6, 8, 10 ]`
 console.log(evenNumbers);
 console.log(evenNumbersArrow);
@@ -74,12 +76,9 @@ const moviePatrons = [
     { name: "Malcolm", age: 15 }
   ];
   
-  // 1.
-  
-  // forEach is a functional way of iterating through an array without a for-loop
+  // 1. forEach is a functional way of iterating through an array without a for-loop
   
   moviePatrons.forEach(patron => console.log(patron.age));
-
 
   // The same as doing this:
 
@@ -89,8 +88,6 @@ const moviePatrons = [
   
   // For each iterates through the elements of an array in order
 
-  // 2.
-  
   // Filter returns a new array containing only elements whose callback returns a truthy value
   
   const canWatchRatedR = moviePatrons.filter((patron) => patron.age > 17);
@@ -305,3 +302,69 @@ function Animal(raining, noise) {
   circle.printInfo();
 
   module.exports = Circle 
+
+
+  // hi
+
+  //https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/using-objects-for-lookups
+// Setup
+function phoneticLookup(val) {
+  let result = "";
+
+  // Only change code below this line
+  switch(val) {
+    case "alpha":
+      result = "Adams";
+      break;
+    case "bravo":
+      result = "Boston";
+      break;
+    case "charlie":
+      result = "Chicago";
+      break;
+    case "delta":
+      result = "Denver";
+      break;
+    case "echo":
+      result = "Easy";
+      break;
+    case "foxtrot":
+      result = "Frank";
+  }
+
+  // Only change code above this line
+  return result;
+}
+
+// these are equivalent completely
+// correct terminology is property and value. Or key/value
+const lookup = {
+  alpha: "Adams",
+  bravo: "Boston",
+  charlie: "Chicago",
+  delta: "Denver",
+  echo: "Easy",
+  foxtrot: "Frank"
+}
+result = lookup[val];
+
+
+phoneticLookup("charlie");
+
+// ES6 adds some nice support for easily defining object literals.
+// Consider the following code:
+
+const getMousePositionn = (x, y) => ({
+  x: x,
+  y: y
+});
+
+// getMousePosition is a simple function that returns an object containing two properties.
+// ES6 provides the syntactic sugar to eliminate the redundancy of having to write x: x. 
+// You can simply write x once, and it will be converted tox: x (or something equivalent) under the hood.
+// Here is the same function from above rewritten to use this new syntax:
+
+const getMousePosition = (x, y) => ({ x, y });
+
+// In ES5, an object can be created by defining a constructor function and using the new keyword to instantiate the object.
+// In ES6, a class declaration has a constructor method that is invoked with the new keyword. If the constructor method is not explicitly defined, then it is implicitly defined with no arguments.

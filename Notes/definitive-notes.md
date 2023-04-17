@@ -3,12 +3,10 @@
 
 # 64 | Chapter 4: Expressions and Operators
 
-If the object expression is followed by a dot and an identifier, the value of the property named by that
-identifier is looked up and becomes the overall value of the expression. If the object expression is followed 
+If the object expression is followed by a dot and an identifier, the value of the property named by that identifier is looked up and becomes the overall value of the expression. If the object expression is followed 
 by another expression in square brackets, that second expression is evaluated and converted to a string. 
 
-The overall value of the expression is then the value of the property named by that string. In either case, if the named
-property does not exist, then the value of the property access expression is undefined. 
+The overall value of the expression is then the value of the property named by that string. In either case, if the named property does not exist, then the value of the property access expression is undefined. 
 
 The .identifier syntax is the simpler of the two property access options, but notice that it can only be used when the property you want to access has a name that is a legal identifier, and when you know the name when you write the program. 
 
@@ -46,7 +44,7 @@ a instanceof Array // => true: a is an array
 a instanceof Object // => true: all arrays are objects
 a instanceof RegExp // => false: arrays are not regular expressions 
 ```
-## 4.13.1 The Conditional Operator (?:)
+## 4.13.1 The Conditional Operator ( ?: )
 ```
 greeting = "hello " + (username ? username : "there");
 ```
@@ -73,7 +71,7 @@ If maxWidth is truthy, use that. Otherwise, look for a value in the preferences 
 
 The problem with this idiomatic use is that zero, the empty string, and false are all falsy values that may be perfectly valid in some circumstances. In this code example, if maxWidth is zero, that value will be ignored. But if we change the || operator to ??, we end up with an expression where zero is a valid value:
 
-// If maxWidth is defined, use that. Otherwise, look for a value in the preferences object. If that is not defined, use a hardcoded constant.
+If maxWidth is defined, use that. Otherwise, look for a value in the preferences object. If that is not defined, use a hardcoded constant.
 
 ```
 let max = maxWidth ?? preferences.maxWidth ?? 500;
@@ -83,9 +81,7 @@ that is placed before its single operand, which can be of
 any type. Its value is a string that specifies the type of the operand. Table 4-3 specifies the value of the typeof operator for any JavaScript value.
 
 ## 4.9.3 delete is a unary operator
-that attempts to delete the object property or array element
-specified as its operand. Like the assignment, increment, and decrement operators, delete is typically used for its property deletion side effect and not for the value
-it returns. Some examples:
+that attempts to delete the object property or array element specified as its operand. Like the assignment, increment, and decrement operators, delete is typically used for its property deletion side effect and not for the value it returns. Some examples:
 
 ```
 let o = { x: 1, y: 2}; 
@@ -99,9 +95,7 @@ delete a[2]; // Delete the last element of the array
 a.length // => 3: note that array length doesn't change, though
 ```
 
-Note that a deleted property or array element is not merely set to the undefined value. When a property is deleted, the property ceases to exist. **Attempting to read a
-nonexistent property returns undefined**, but you can test for the actual existence of a property with the in operator. Deleting an array element leaves a “hole” in
-the array and does not change the array’s length.
+Note that a deleted property or array element is not merely set to the undefined value. When a property is deleted, the property ceases to exist. **Attempting to read a nonexistent property returns undefined**, but you can test for the actual existence of a property with the in operator. Deleting an array element leaves a “hole” in the array and does not change the array’s length.
 
 ---
 
@@ -211,6 +205,8 @@ For each letter in the string, the code checks if the letter already exists as a
 
 After the for loop finishes iterating over the string, the frequency object will contain keys for each letter in the string, and the value of each key will be the number of times that letter appears in the string.
 
+---
+
 ## Another example (new Set):
 
 ```
@@ -318,7 +314,7 @@ For simplicity, we sometimes say that an operator returns a value rather than �
 
 A property access expression evaluates to the value of an object property or an array element. JavaScript defines two syntaxes for property access:
 
-expression.identifier</br>
+expression.identifier
 expression[expression]
 
 ```
@@ -335,17 +331,21 @@ a[0].x // => 1: property x of expression a[0]
 To obtain the value of a property, use the dot (.) or square bracket ([]) operators described in §4.4. The lefthand side should be an expression whose value is an object. 
 
 If using the dot operator, the righthand side must be a simple identifier that names the property. If using square brackets, the value within the brackets must be an expression that evaluates to a string that contains the desired property name:
+
 ```
 let author = book.author; // Get the "author" property of the book.
 let name = author.surname; // Get the "surname" property of the author.
 let title = book["main title"]; // Get the "main title" property of the book.
 ```
 As explained in the preceding section, the following two JavaScript expressions have the same value:
+
 ```
 object.property
 object["property"]
 ```
-The first syntax, using the dot and an identifier, is like the syntax used to access a static field of a struct or object in C or Java.
+The first syntax, using the dot and an identifier, is like the syntax used to access a static field of a struct or object in C or Java. jamy
+
+---
 
 ## Example on case where array bracket notation is necessary
 
@@ -391,10 +391,10 @@ Since you can’t know the property names when you write the program, there is n
 
 </br>
 
-**In Chapter 5, we introduced the for/in loop (and we’ll see it again shortly, in §6.6). The power of this JavaScript statement becomes clear when you consider its use with
-associative arrays.**
-Here is how you would use it when computing the total value of a
-portfolio:
+---
+
+In Chapter 5, we introduced the for/in loop (and we’ll see it again shortly, in §6.6). The power of this JavaScript statement becomes clear when you consider its use with associative arrays. Here is how you would use it when computing the total value of a portfolio:
+
 ```
 function computeValue(portfolio) {
 let total = 0.0;
@@ -416,18 +416,13 @@ let f = q.toString(); // toString is inherited from Object.prototype
 q.x + q.y // => 3; x and y are inherited from o and p
 ```
 
-Now suppose you assign to the property x of the object o. If o already has an own
-(non-inherited) property named x, then the assignment simply changes the value of
-this existing property. Otherwise, the assignment creates a new property named x on
-the object o. If o previously inherited the property x, that inherited property is now
-hidden by the newly created own property with the same name.
-Property assignment examines the prototype chain only to determine whether the
-assignment is allowed. If o inherits a read-only property named x, for example, then
-the assignment is not allowed. (Details about when a property may be set are in
-§6.3.3.) If the assignment is allowed, however, it always creates or sets a property in
-the original object and never modifies objects in the prototype chain. The fact that
-inheritance occurs when querying properties but not when setting them is a key feature
-of JavaScript because it allows us to selectively override inherited properties:
+Now suppose you assign to the property x of the object o. If o already has an own (non-inherited) property named x, then the assignment simply changes the value of this existing property.
+
+Otherwise, the assignment creates a new property named x on the object o. If o previously inherited the property x, that inherited property is now hidden by the newly created own property with the same name.
+
+Property assignment examines the prototype chain only to determine whether the assignment is allowed. If o inherits a read-only property named x, for example, then the assignment is not allowed. 
+
+If the assignment is allowed, however, it always creates or sets a property in the original object and never modifies objects in the prototype chain. The fact that inheritance occurs when querying properties but not when setting them is a key feature of JavaScript because it allows us to selectively override inherited properties:
 
 ```
 let unitcircle = { r: 1 }; // An object to inherit from
@@ -437,38 +432,55 @@ c.r = 2; // c overrides its inherited property
 unitcircle.r // => 1: the prototype is not affected
 ```
 
-The in operator expects a property name on its left side and an object on its right. It
-returns true if the object has an own property or an inherited property by that name:
+The in operator expects a property name on its left side and an object on its right. It returns true if the object has an own property or an inherited property by that name:
+
+```
 let o = { x: 1 };
 "x" in o // => true: o has an own property "x"
 "y" in o // => false: o doesn't have a property "y"
-"toString" in o // => true: o inherits a toString property
-The hasOwnProperty() method of an object tests whether that object has an own
-property with the given name. It returns false for inherited properties:
+"toString" in o => true: o inherits a toString property.
+``` 
+
+
+### The hasOwnProperty() method of an object tests whether that object has an own property with the given name. It returns false for inherited properties:
+
+```
 let o = { x: 1 };
 o.hasOwnProperty("x") // => true: o has an own property x
 o.hasOwnProperty("y") // => false: o doesn't have a property y
 o.hasOwnProperty("toString") // => false: toString is an inherited property
+```
 
-In ES6 and later, string literals can be delimited with backticks:
+---
+
+## In ES6 and later, string literals can be delimited with backticks:
+```
 let s = `hello world`;
-This is more than just another string literal syntax, however, because these template
-literals can include arbitrary JavaScript expressions. The final value of a string literal
-in backticks is computed by evaluating any included expressions, converting the values
-of those expressions to strings and combining those computed strings with the
-literal characters within the backticks:
+```
+
+This is more than just another string literal syntax, however, because these template literals can include arbitrary JavaScript expressions. 
+
+The final value of a string literal in backticks is computed by evaluating any included expressions, converting the values
+of those expressions to strings and combining those computed strings with the literal characters within the backticks:
+
+```
 let name = "Bill";
 let greeting = `Hello ${ name }.`; // greeting == "Hello Bill."
-Everything between the ${ and the matching } is interpreted as a JavaScript expression.
-Everything outside the curly braces is normal string literal text. The expression
-inside the braces is evaluated and then converted to a string and inserted into the
-template, replacing the dollar sign, the curly braces, and everything in between them.
+```
 
+**Everything between the ${ and the matching } is interpreted as a JavaScript expression.**
+
+Everything outside the curly braces is normal string literal text. The expression inside the braces is evaluated and then converted to a string and inserted into the template, replacing the dollar sign, the curly braces, and everything in between them.
+
+---
+
+## AJAX
 
 Lower-level module that allows us to make http from our node code. 
 Rather than finding a package, it lets us put together what we would do on the front-end with ajax or fetch.
 (Basically a module that allows us to make http requests).
 
+```
 const axios = require("axios");
 
 function MovieSearch() {}
@@ -477,26 +489,32 @@ MovieSearch.prototype.buildUrl = function(movie){
     return `https://www.omdbapi.com/?t=${movie}&apikey=trilogy`;
 };
 
-makes http request to the above URL
+// makes http request to the above URL
 
 MovieSearch.prototype.search = function(movie) {
     return axios.get(this.buildUrl(movie));
 };
 
 module.exports = MovieSearch
+```
 
 what would use this - index.js:
 
+```
 const MovieSearch = require("./movieSearch");
 
 const movie = new MovieSearch();
 
 movie.search("spider-man)
     .then(res => console.log(res.json))  // after promise comes back, res.json is logged
+```
 
 
-// Constructor is a keyword - is the same as a new Constructor { etc. }
+---
 
+## Constructor is a keyword - is the same as a new Constructor { etc. }
+
+```
 class Shape {
   // Just like constructor functions, classes can accept arguments
   constructor(area, perimeter) {
@@ -513,6 +531,53 @@ class Shape {
 const shape = new Shape(25, 25);
 
 shape.printInfo();
+```
+ES6 provides a new syntax to create objects, using the class keyword.
+
+In ES5, an object can be created by defining a constructor function and using the new keyword to instantiate the object.
+
+```
+class Vegetable {
+  constructor(name){
+    this.name = name;
+  }
+};
+
+const carrot = new Vegetable('carrot');
+console.log(carrot.name); // Should display 'carrot'
+```
+
+In ES6, a class declaration has a constructor method that is invoked with the new keyword. If the constructor method is not explicitly defined, then it is implicitly defined with no arguments.
+
+```
+// Explicit constructor
+class SpaceShuttle {
+  constructor(targetPlanet) {
+    this.targetPlanet = targetPlanet;
+  }
+  takeOff() {
+    console.log("To " + this.targetPlanet + "!");
+  }
+}
+
+// Implicit constructor 
+class Rocket {
+  launch() {
+    console.log("To the moon!");
+  }
+}
+
+const zeus = new SpaceShuttle('Jupiter');
+// prints To Jupiter! in console
+zeus.takeOff();
+
+const atlas = new Rocket();
+// prints To the moon! in console
+atlas.launch();
+``` 
+It should be noted that the class keyword declares a new function, to which a constructor is added. This constructor is invoked when new is called to create a new object.
+
+
 
 ---
 
