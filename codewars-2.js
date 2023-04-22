@@ -271,3 +271,46 @@ const quarterBof = m => Math.ceil(m/3);
 const quarterNof = (month) => {
   return month < 4 ? 1 : month < 7 ? 2 : month < 10 ? 3 : 4;
 }
+
+// Kind of super slow but also functional way of doing it
+
+const monthToQuarterMap = {
+  '1': 1,
+  '2': 1,
+  '3': 1,
+  '4': 2,
+  '5': 2,
+  '6': 2,
+  '7': 3,
+  '8': 3,
+  '9': 3,
+  '10': 4,
+  '11': 4,
+  '12': 4,
+};
+
+function quarterOf(month) {
+  return monthToQuarterMap[month];
+}
+
+// Another interesting one:
+
+const quarterOf=month=>[1,1,1,1,2,2,2,3,3,3,4,4,4][month]
+
+// Function that converts a bboolean to a string
+
+function booleanToString(b){
+  return b.toString();
+}
+
+function booleanToString(b){
+  return b ? 'true' : 'false';
+}
+
+function booleanToString(b){
+  return String(b);
+}
+
+function booleanToString(b){
+  return `${b}`
+}
