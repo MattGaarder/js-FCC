@@ -130,3 +130,38 @@ The example above uses strings for the argument of these functions, but it can r
 
 When you make a server request it takes some amount of time, and after it completes you usually want to do something with the response from the server. This can be achieved by using the then method. The then method is executed immediately after your promise is fulfilled with resolve. Here’s an example:
 
+Function declaration:
+
+function square(num) {
+    return num * num;
+}
+
+Function expressions:
+
+const square = function(num) {  // This num is the function parameter (receiving)
+    return num * num;
+}
+
+square(5)  // This 5 is the function argument, (sending)
+
+First class function:
+
+The concept of functions being able to do everything a variable can do. For example, a function can be passed into a different function.
+
+IIFE:
+
+Immediately invoked function expression.
+
+(function square(num) {
+    return num * num;
+})(5);   // this is called right-away, returns 25
+
+Review closures and innie functions having access to variables declared in its parents scope.
+
+Call-back function:
+
+A function that is passed in to another function as an argument. Map, filter, reduce, event listeners are all examples of functions that need a call-back function.
+
+Closure: 
+
+A closure is a function that references variables in the outer scope from its inner scope. 
