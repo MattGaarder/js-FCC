@@ -67,13 +67,6 @@ $.isNumeric() - // Determines whether its argument is a number.
 
 
 
-
-
-
-
-
-
-
 // Super clean password generator
 function getPasswordCharacter() {
     return String.fromCharCode(Math.floor(Math.random() * 77) + 34);

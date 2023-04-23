@@ -314,3 +314,64 @@ function booleanToString(b){
 function booleanToString(b){
   return `${b}`
 }
+
+// Return sum of positive integers in an array
+
+function positiveSum(arr){
+  return arr.reduce((sum, currentValue) => {
+    return currentValue > 0 ? sum + currentValue : sum;
+  },0);
+}
+
+// Alternative
+
+function positiveSum(arr) {
+  let sum = 0; 
+  for (n of arr) {
+    if (n > 0) sum += n;
+  }
+  return sum;
+}
+
+// More elegant:
+
+function positiveSum (arr) {
+  return arr.filter(x => x>=0).reduce((a, c) => a + c, 0);
+}
+
+// Return first non-consecutive number in an array
+
+function firstNonConsecutive(arr) {
+  for (let i = 0; i < arr.length - 1; i++){
+    if(arr[i] !== arr[i + 1] - 1){
+       return arr[i + 1]
+    }
+  }
+  return null
+}
+
+// Return squared numbers from an integer
+
+function squareDigits(num) {
+  let squaredDigitsArray = [];
+  let stringNum = num.toString();
+  for (i = 0; i < stringNum.length; i++) {
+    squaredDigitsArray.push(stringNum[i] * stringNum[i]);
+  }
+  return parseInt(squaredDigitsArray.join(""));
+}
+
+// Much more elegant way of doing it
+
+const squareDigits = (num) => Number((num + '').split("").map(c => c * c).join(""));
+
+// Count sheep from an array of [true, false... etc.]
+function countSheeps(arrayOfSheep) {
+  let present = 0;
+  arrayOfSheep.filter((sheep) => {
+    if(sheep) {
+    present +=1
+  }
+});
+  return present;
+}
