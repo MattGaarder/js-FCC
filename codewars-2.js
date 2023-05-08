@@ -375,3 +375,13 @@ function countSheeps(arrayOfSheep) {
 });
   return present;
 }
+
+// Create a function with two arguments that will return an array of the first n multiples of x.
+
+function countBy(x, n) {
+  let z = [];
+  for(x; n > 0; n--){
+    z.push(x * n)
+  }
+  return z.reverse();
+}
