@@ -385,3 +385,24 @@ function countBy(x, n) {
   }
   return z.reverse();
 }
+
+// p0, percent, aug (inhabitants coming or leaving each year), p (population to equal or surpass)
+// the function nb_year should return n number of entire years needed to get a population greater or equal to p.
+
+function nbYear(p0, percent, aug, p) {
+  let convertedPercent = percent / 100;
+  let changingP = p0;
+  let n;
+  for (n = 0; changingP < p; n++){
+    changingP += Maths.floor(changingP * convertedPercent + aug)
+  }
+  return n
+}
+
+var isSquare = function(n){
+  let root = Math.round(Math.sqrt(n));
+  if (root * root === n){
+    return true
+  }
+  return false; // fix me
+}

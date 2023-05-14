@@ -140,3 +140,65 @@ Using the regex starRegex, find and extract both Twinkle words from the string t
 
 Note
 You can have multiple flags on your regex like /search/gi
+
+
+# RegEx Notion
+
+***Literals***. forward slashes / at the beginning and end of the regular expression indicate that it is a regular expression literal. Use this to find exactly matching patterns.
+
+***Alternation*** or ***OR*** operator. This operator matches patterns either before or after it. For example, if you wanted to match the strings `yes` or `no`, the regex you want is `/yes|no/`.
+
+***Ignore case***. Use the ‘i’ flag (flags are appended after the the regex) to ignore the case of the regex. This will find the pattern regardless of the case of the regex.
+
+G***lobal search.*** To search or extract a pattern more than once, use the ***global search*** flag ‘g’. match() will return an array of all strings that match the regex.
+
+The ***wildcard*** character/dot/period will match any one character. For example, if you wanted to match `hug`, `huh`, `hut`, and `hum`, you can use the regex `/hu./` to match all four words.
+
+If two forward slashes demarkate /literals/ and the dot markates /./ matches for everything, square brackets are the middle ground. They allow you to define a group of characters you wish to match with ***‘character classes’*.** For example, if you want to match `bag`, `big`, and `bug` but not `bog`. You can create the regex `/b[aiu]g/` to do this. The `[aiu]` is the character class that will only match the characters `a`, `i`, or `u`.
+
+Inside a character set you can define a range of characters/numbers to match using a hyphen. [a-e] would match all characters between and including a and e.
+
+***Negated character set.*** Use to define a set of characters that you do not want to match. Located after the opening brackets, after the characters you do not want to match. 
+
+Outside of a character set the caret ^ is used to search for patterns at the beginning of strings. 
+
+Use  `+` to match a character (or group of characters) that appear one or more times in a row. For example, `/a+/g` would find one match in `abc` and return `["a"]`. Because of the `+`, it would also find a single match in `aabc` and return `["aa"]`. If it were instead checking the string `abab`, it would find two matches and return `["a", "a"]` because the `a` characters are not in a row
+
+If + was used to look for characters that occur one or more times. * is used to match characters that occur zero or more times. This is a little confusing so visit this [link](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/match-characters-that-occur-zero-or-more-times) if you need further clarification.
+
+***Lazy matching***. Regexs are by default ***greedy*** in that they find the longest possible part of a string that fits the regex pattern and returns it as a match. ? changes this to a lazy match, as in the shortest applicable match. Compare the regex `/t[a-z]*i/` applied to the string `"titanic",` (returning the match `["titani"]`) with the adjusted regex of `/t[a-z]*?i/` (which returns `["ti"]`). Note: place the ? before the last character where you want the pattern to end. 
+
+Use $ to match patterns at the end of strings. (This is the opposite of ^ outside of a character set). This can also be called an anchor character.
+
+This is an example of *shorthand character classes*. This is just a short cut equivalent of `/[A-Za-z0-9_]+/` and means any upper and lowercase letters plus numbers (and underscore).
+
+If \w is the shortcut to match all alphanumerics, using capital W is the opposite of this i.e. all characters that are not alphanumerics. Or to write this using regex - `[^A-Za-z0-9_]`.
+
+This is another example of a *shorthand character class.* It is the shortcut for matching digit characters. The equivalent written in regex would be `[0-9]`.
+
+Logic dictates that this is the shortcut for matching non-digit characters. i.e.`[^0-9]`.
+
+This is the regex that matches any whitespace. These include carriage return, tab, form feed, and new line characters, as well as spaces. Think of it as similar to the character class `[\r\t\f\n\v]`.
+
+Logic dictates that this matches everything except whitespace. The regex equivalent of this would be `[^ \r\t\f\n\v]`.
+
+***Quantity specifier.*** These are used to match a certain range of patterns. Two numbers separated by a common markate the upper and lower number of patterns. For example, to match only the letter `a` appearing between `3` and `5` times in the string `ah`, your regex would be `/a{3,5}h/`. To specify only the lower limit, keep the first number followed by a comma. 
+
+```
+let testStr = "freeCodeCamp";
+let testRegex = /Code/;
+testRegex.test(testStr);
+```
+
+```
+"Hello, World!".match(/Hello/);
+let ourStr = "Regular expressions";
+let ourRegex = /expressions/;
+ourStr.match(ourRegex);
+```
+
+The .test() method takes a regex, and applies it to a string, and returns true or false if the pattern is found or not. 
+
+Use the .match() method to extract actual matches found with this method. Apply the method on a string and pass in the regex inside the parentheses.
+
+Here the first `match` would return `["Hello"]` and the second would return `["expressions"]`.
